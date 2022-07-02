@@ -4,13 +4,11 @@
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-07-03 01:18:32
+ * @LastEditTime: 2022-07-03 01:38:33
 -->
 <template>
   <div class="home-box">
-    <!-- <div class="left-box">
-      left-box
-    </div> -->
+
     <div class='container'>
       <div class="transition tabs">
         <el-tabs v-model="activeName">
@@ -21,6 +19,21 @@
           </el-tab-pane>
         </el-tabs>
       </div>
+      <!-- 更多 -->
+      <div class="more-botton" @click="showMoreList(item)">
+        <i class="el-icon-menu"></i>
+      </div>
+      <ul class="card-tabs clearfix" v-if="showMore" @mouseleave="showMore=false">
+        <li class="mr12 mb12" :class="{'select-card-tab': item.id === activeName}" v-for="item in tabsList" :key="item.id">
+          {{item.name}}
+        </li>
+      </ul>
+      <!-- 按照热度排序 -->
+      <el-tooltip effect="dark" content="是否热度排序" placement="bottom" :hide-after="1500">
+        <div class="hot-botton" @click="handleSortHot">
+          <svg-icon :icon-class="isSortHot?'hot_red':'hot_grey'"></svg-icon>
+        </div>
+      </el-tooltip>
     </div>
     <div class="right-box">
       <div class="transition">
@@ -35,6 +48,8 @@
 export default {
   data() {
     return {
+      isSortHot: false,
+      showMore: false,
       activeName: "1",
       tabsList: [
         {
@@ -42,63 +57,63 @@ export default {
           id: "1"
         },
         {
-          name: "前端",
+          name: "css",
           id: "2"
         },
         {
-          name: "前端",
+          name: "javascript",
           id: "3"
         },
         {
-          name: "前端",
+          name: "node",
           id: "4"
         },
         {
-          name: "前端",
+          name: "webpack",
           id: "5"
         },
         {
-          name: "前端",
+          name: "vite",
           id: "6"
         },
         {
-          name: "前端",
+          name: "vue2",
           id: "7"
         },
         {
-          name: "前端",
+          name: "vue3",
           id: "8"
         },
         {
-          name: "前端",
+          name: "react",
           id: "9"
         },
         {
-          name: "前端",
+          name: "webGI",
           id: "10"
         },
         {
-          name: "前端",
+          name: "three",
           id: "11"
         },
         {
-          name: "前端",
+          name: "git",
           id: "12"
         },
         {
-          name: "前端",
+          name: "element",
           id: "13"
         },
         {
-          name: "前端",
+          name: "antdsign",
           id: "14"
         },
         {
-          name: "前端",
+          name: "uview",
           id: "15"
         },
         {
-          name: "前端",
+          name: "uniapp",
           id: "16"
         },
         {
@@ -119,6 +134,13 @@ export default {
   created() {
   },
   methods: {
+    showMoreList() {
+      this.showMore = !this.showMore
+    },
+    handleSortHot() {
+      this.isSortHot = !this.isSortHot
+
+    }
   }
 }
 </script>
@@ -154,6 +176,7 @@ export default {
   }
 
   .container {
+    position: relative;
     margin: 20px;
     height: 100%;
     width: 80%;
@@ -276,6 +299,76 @@ export default {
           color: #fff;
           font-weight: bold;
         }
+      }
+    }
+    .more-botton {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      // right: 20px;
+      right: -20px;
+      top: 10px;
+      text-align: center;
+      line-height: 32px;
+      color: $third_text_color;
+      animation: wobble-horizontal 300ms;
+      cursor: pointer;
+      &:hover {
+        color: $main_color;
+      }
+    }
+    .hot-botton {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      right: -50px;
+      top: 10px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 32px;
+      color: $second_text_color;
+      animation: wobble-horizontal 300ms;
+      cursor: pointer;
+      &:hover {
+        color: $main_color;
+      }
+    }
+    .card-tabs {
+      width: 80%;
+      min-height: 120px;
+      background: #fff;
+      border-radius: 8px;
+      position: absolute;
+      right: 10px;
+      top: 42px;
+      // transform: translate(-50%, 0);
+      z-index: 9;
+      border: 1px solid $third_border_color;
+      animation: aniBottomTop 300ms;
+      box-shadow: 0px 1.3px 1.2px -24px rgba(0, 0, 0, 0.041),
+        0px 3.3px 3.1px -24px rgba(0, 0, 0, 0.056),
+        0px 6.7px 6.4px -24px rgba(0, 0, 0, 0.069),
+        0px 13.9px 13.1px -24px rgba(0, 0, 0, 0.084),
+        0px 38px 36px -24px rgba(0, 0, 0, 0.13);
+      padding: 20px;
+      li {
+        list-style: none;
+        float: left;
+        background: $main_bg_color;
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 4px 10px;
+        font-size: 14px;
+        color: $second_text_color;
+        &:hover {
+          background: $main_color;
+          color: #fff;
+        }
+      }
+      .select-card-tab {
+        background: $main_color;
+        color: #fff;
+        font-weight: bold;
       }
     }
   }
