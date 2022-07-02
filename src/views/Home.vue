@@ -4,7 +4,7 @@
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-07-03 01:14:53
+ * @LastEditTime: 2022-07-03 01:18:32
 -->
 <template>
   <div class="home-box">
@@ -177,9 +177,9 @@ export default {
 
         .el-tabs__item {
           font-size: 18px;
-          // &:hover {
-          //   color: $main_color;
-          // }
+          &:hover {
+            color: $main_color;
+          }
         }
         .is-active {
           color: $main_color;
