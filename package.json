@@ -13,6 +13,7 @@
     "dayjs": "^1.11.2",
     "element-ui": "^2.15.8",
     "lodash": "^4.17.21",
+    "mv-full-page": "^3.1.2",
     "vue": "^2.6.11",
     "vue-clock2": "^1.1.5",
     "vue-router": "^3.2.0",

@@ -1,0 +1,29 @@
+{
+  "menuList":[
+ 
+    {
+     "id": "0",
+     "icon": "el-icon-s-home",
+     "name": "首页",
+     "index": "/index"
+    },
+    {
+      "id": "2",
+      "icon": "el-icon-menu",
+      "name": "项目展示",
+      "index": "/project"
+     },
+     {
+      "id": "3",
+      "icon": "el-icon-s-comment",
+      "name": "建议信箱",
+      "index": "/message-index"
+     },
+     {
+      "id": "4",
+      "icon": "el-icon-user-solid",
+      "name": "个人主页",
+      "index": "/me"
+     }
+  ]
+ }

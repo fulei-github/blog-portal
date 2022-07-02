@@ -3,7 +3,7 @@
  * @Autor: fulei
  * @Date: 2020-05-07 23:22:51
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-12 17:36:11
+ * @LastEditTime: 2022-07-02 18:22:44
  -->
 <template>
   <div>
@@ -32,7 +32,7 @@
         </template>
       </el-submenu>
     </el-menu> -->
-    <el-menu mode="horizontal" class="el-menu-vertical-demo" :collapse-transition="false" menu-trigger="click" :aria-expanded="false">
+    <el-menu mode="horizontal" default-active='/index' class="el-menu-vertical-demo" :collapse-transition="false" menu-trigger="click" :aria-expanded="false">
       <el-submenu v-for="item in data" :index="item.id" :key="item.id">
         <template slot="title">
           <i :class="item.icon" id="icon-item"></i>

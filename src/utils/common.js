@@ -3,7 +3,7 @@
  * @Autor: guoruliang
  * @Date: 2020-03-23 17:02:15
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-02 17:46:17
+ * @LastEditTime: 2022-06-27 20:24:23
  */
 export function setTitle(title) {
   document.title = title

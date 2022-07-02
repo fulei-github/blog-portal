@@ -1,10 +1,10 @@
 <!--
- * @Description: 技术分享目录
+ * @Description: 书籍分享
  * @Date: 2022-06-12 17:27:14
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-12 18:12:23
+ * @LastEditTime: 2022-06-12 20:33:05
 -->
 <template>
   <div class="technology_wrapper">
@@ -47,7 +47,7 @@
                     {{item.likes}}
                   </span>
                   <span>
-                    <el-button round plain type="info" @click="readArticle">阅读文章</el-button>
+                    <el-button round plain type="info" @click="readArticle(item)">阅读文章</el-button>
                   </span>
                 </div>
               </div>
@@ -95,11 +95,17 @@ export default {
       this.getList()
     },
     //阅读文章
-    readArticle() {
-      this.$message({
-        type: "warning",
-        message: "待开发..."
+    readArticle(item) {
+      this.$router.push({
+        path: "/article/detail",
+        query: {
+          id: item.id
+        }
       })
+      // this.$message({
+      //   type: "warning",
+      //   message: "待开发..."
+      // })
     },
     getList() {
       this.$Loading.show()
@@ -109,6 +115,7 @@ export default {
 
           this.list.push(
             {
+              id: index,
               img: require(`@/assets/imgs/carousel/focus_${this.random(1, 6)}.jpg`),
               title: "XSS注入攻击",
               mainContent: "从我们输入域名开始直到我们获得要访问的ip地址的过程，我们称之为域名解析过程。当要访问的URL没有命中本地的浏览器缓存时，就要查看计算机本地的HOST指向。计算机本地的HOST是一个文件，记录着域名和IP的映射关系。",
@@ -122,7 +129,7 @@ export default {
         }
         this.$Loading.hide()
         clearTimeout(timers)
-      }, 800)
+      }, 400)
 
     },
     handleClick(index, key) {
@@ -147,7 +154,7 @@ export default {
 @import "@/styles/variables.scss";
 .technology_wrapper {
   min-height: 800px;
-  background: red;
+  background: $third_bg_color;
   padding: 10px;
   .menu {
     border-bottom: 1px solid $fourth_border_color;
@@ -170,7 +177,7 @@ export default {
 }
 .article_box {
   margin-top: 20px;
-  background: red;
+  background: $third_bg_color;
   .wrapper {
     li {
       padding: 10px;

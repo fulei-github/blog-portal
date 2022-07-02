@@ -4,22 +4,24 @@
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-12 20:22:09
+ * @LastEditTime: 2022-07-03 00:35:32
  */
 import Layout from "@/layout/index.vue"
 export default [
   {
     path: "/message",
     component: Layout,
-    redirect: "/message/index",
+    redirect: "/message-index",
     children: [
       {
-        path: "/message/index",
+        path: "/message-index",
         meta: {
           title: "建议信箱"
         },
         component: () =>
-          import(/* webpackChunkName: "publicModule" */ "@/views/message-module")
+          import(
+            /* webpackChunkName: "publicModule" */ "@/views/message-module"
+          )
       }
     ]
   }

@@ -1,94 +1,136 @@
 <!--
  * @Description: layout布局
- * @Date: 2022-05-19 18:33:11
+ * @Date: 2022-06-12 21:14:33
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-12 17:33:02
+ * @LastEditTime: 2022-07-03 00:54:54
 -->
-<template>
-  <div class="layout-box">
-    <f-gotop />
-    <!-- 导航菜单 -->
-    <div class="top-box">
-      <div class="nav-logo">
-        <h3>博客建设</h3>
+ <template>
+  <div class="container">
+    <!-- <top-nav /> -->
+    <div class="menu-box" :style="menuStyle">
+      <div class="logo">
+        logo
       </div>
-      <div class="nav-box">
-        <f-menu></f-menu>
+      <div class="imgs" @click="show = !show">
+        <i :class="show ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i>
+      </div>
+      <fMenu :theChoosen='$route.meta.menuItem' :showIcon="show" />
+
+    </div>
+    <div class="container-content" :style="layoutStyle">
+      <div class="layout-box">
+        <transition name="fade">
+          <template>
+            <keep-alive>
+              <router-view />
+            </keep-alive>
+          </template>
+        </transition>
       </div>
     </div>
-    <!-- 主体区域 -->
-    <div class="container-box">
-      <transition name="fade">
-        <router-view />
-      </transition>
-    </div>
-    <!-- 底部区域 -->
-    <f-footer />
   </div>
 </template>
-
-<script>
-import FFooter from "./footer.vue"
+ 
+ <script>
+import fMenu from "./menu.vue"
 export default {
   components: {
-    FFooter
+    fMenu
   },
+  name: "layout",
   data() {
     return {
-
+      route: null,
+      show: true //控制侧边栏
     }
   },
+  computed: {
+    menuStyle() {
+      const width = this.show ? 70 : 210
+      return {
+        width: width + "px"
+      }
+    },
+    layoutStyle() {
+      const width = this.show ? 70 : 210
+      return {
+        marginLeft: width + "px"
+      }
+    }
+  },
+  watch: {
+    $route: {
+      handler(to) {
+        // console.log("to", to)
+        this.route = to
 
-  mounted() {
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+  created() {
 
   },
 
   methods: {
-
+    controlMenu() {
+      this.show = !this.show
+    }
   }
 }
-</script>
-
-<style lang="scss" scoped>
+ </script>
+ 
+ <style lang="scss" scoped>
 @import "@/styles/variables.scss";
-.layout-box {
-  // min-height: 1000px;
-  // height: ;
-  height: 100vh; /*注意，这里设了这个高度后，后期给window注册onscorll事件时，注册不上*/
-  overflow-x: hidden;
-  // height: 100%;
-  width: 100%;
-  // 导航菜单
-  .top-box {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
+@import "@/styles/transition.scss";
+
+.menu-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: 0.3s;
+  height: 100vh;
+  background-color: $main_color;
+  animation: aniLeftRight 460ms;
+  padding-right: 1px;
+  .logo {
+    height: 100px;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid $second_border_color;
-    background-color: #fff;
-    height: 65px;
-    //logo
-    .nav-logo {
-      padding-left: 80px;
-    }
-    //nav
-    .nav-box {
-      padding-right: 50px;
-    }
+    text-align: center;
+    line-height: 100px;
+    color: white;
+    font-size: 20px;
   }
-  //主体区域
-  .container-box {
-    width: $layout_width;
-    // margin-top: 65px;
-    margin: 65px auto;
-    margin-bottom: 20px;
-    padding-top: 20px;
-    // border: 1px solid black;
+  .imgs {
+    position: absolute;
+    top: 370px;
+    right: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 60px;
+    line-height: 60px;
+    background-color: $light_blue_color;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 99;
+  }
+}
+.container {
+  // padding-top: 70px;
+  background-color: $main_bg_color;
+  overflow: hidden;
+  .container-content {
+    height: 100vh;
+    // margin-left: 210px;
+    .layout-box {
+      height: 100vh;
+      // padding: 20px;
+    }
   }
 }
 </style>

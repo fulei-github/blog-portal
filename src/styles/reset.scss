@@ -2,7 +2,51 @@
 
 @import "./variables.scss";
 
-::v-deep .el-button--primary{
-  background-color:$main_color;
-  border-color:$main_color;
+/*************  <- 标签页样式重置 -> 开始 **************/
+.el-tabs{
+  font-size: 16px;
+  &__item {
+    font-size: 16px;
+    &.is-top,&.is-bottom{
+      padding: 0 !important;
+      margin-right: 40px;
+    }
+    &.is-left,&.is-right{
+      padding: 0 16px;
+    }
+   
+    font-weight: normal;
+  }
+  &__item.is-active {
+    // border-bottom: 2px solid $main_color;
+    font-weight: 600;
+    &.is-top,&.is-bottom{
+       border-bottom: 2px solid $main_color;
+    }
+  }
+  &__nav-wrap::after {
+    background: $third_border_color;
+    height: 2px;
+  }
+  &__active-bar {
+    height: 0px;
+  }
+  &__nav-prev, &__nav-next{
+    width: 36px;
+    text-align: center;
+  }
+  &__nav-prev:hover, &__nav-next:hover{
+    color: $main_color;
+  }
+  // Using to fixed the left and right arrows
+  &__nav-wrap.is-scrollable{
+    padding: 0 36px !important;
+  }
+  &__header{
+    &.is-top{
+      margin-bottom:10px;
+    }
+    
+  }
 }
+/*************  <- 标签页样式重置 -> 结束 **************/

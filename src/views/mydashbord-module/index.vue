@@ -4,7 +4,7 @@
  * @Version: 0.1
  * @Autor: fulei
  * @LastEditors: fulei
- * @LastEditTime: 2022-06-12 18:30:29
+ * @LastEditTime: 2022-07-02 18:46:28
 -->
 <template>
   <div class="mydashbord_wrapper">
@@ -50,7 +50,7 @@ export default {
 @import "@/styles/variables.scss";
 .mydashbord_wrapper {
   min-height: 800px;
-  background: $third_bg_color;
+  // background: $third_bg_color;
   padding: 10px;
 }
 </style>
